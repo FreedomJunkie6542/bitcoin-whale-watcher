@@ -285,9 +285,9 @@
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 110px 1fr auto;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .tx-card::before {
@@ -350,22 +350,25 @@
   .tx-amount-group {
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
+    overflow: hidden;
   }
 
   .tx-amount {
     font-family: 'Space Mono', monospace;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     white-space: nowrap;
   }
 
   .tx-usd {
     font-family: 'Space Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-dim);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .tx-time {
