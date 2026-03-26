@@ -608,12 +608,19 @@
 
   function playAlert(tier) {
     if (!soundEnabled || !audioCtx) return;
+
+    if (tier === 'mega') {
+      // Loud siren alarm for 500+ BTC
+      playMegaAlarm();
+      return;
+    }
+
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.connect(gain);
     gain.connect(audioCtx.destination);
 
-    const freqs = { dolphin: [600, 800], humpback: [400, 600, 800], whale: [300, 500, 700, 900], mega: [200, 400, 600, 800, 1000] };
+    const freqs = { dolphin: [600, 800], humpback: [400, 600, 800], whale: [300, 500, 700, 900] };
     const notes = freqs[tier] || freqs.dolphin;
 
     gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
@@ -626,12 +633,71 @@
     osc.stop(audioCtx.currentTime + notes.length * 0.12 + 0.3);
   }
 
+  function playMegaAlarm() {
+    if (!audioCtx) return;
+    const t = audioCtx.currentTime;
+
+    // Three rising siren sweeps
+    for (let i = 0; i < 3; i++) {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const start = t + i * 0.6;
+      osc.frequency.setValueAtTime(300, start);
+      osc.frequency.linearRampToValueAtTime(900, start + 0.25);
+      osc.frequency.linearRampToValueAtTime(300, start + 0.5);
+
+      gain.gain.setValueAtTime(0.15, start);
+      gain.gain.setValueAtTime(0.15, start + 0.4);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.55);
+
+      osc.start(start);
+      osc.stop(start + 0.6);
+    }
+
+    // Deep bass hit
+    const bass = audioCtx.createOscillator();
+    const bassGain = audioCtx.createGain();
+    bass.type = 'sine';
+    bass.frequency.setValueAtTime(80, t);
+    bass.connect(bassGain);
+    bassGain.connect(audioCtx.destination);
+    bassGain.gain.setValueAtTime(0.2, t);
+    bassGain.gain.exponentialRampToValueAtTime(0.001, t + 2);
+    bass.start(t);
+    bass.stop(t + 2);
+  }
+
+  // Browser push notifications
+  function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }
+
+  function sendNotification(btcAmount, usd) {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    const n = new Notification('🐋 MEGA WHALE ALERT!', {
+      body: `${btcAmount.toFixed(2)} BTC (${usd}) just moved!`,
+      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🐋</text></svg>',
+      tag: 'whale-alert',
+      requireInteraction: true
+    });
+    n.onclick = () => { window.focus(); n.close(); };
+  }
+
   function toggleSound() {
     soundEnabled = !soundEnabled;
     const btn = document.getElementById('soundBtn');
     btn.textContent = soundEnabled ? '🔊' : '🔇';
     btn.classList.toggle('active', soundEnabled);
-    if (soundEnabled) initAudio();
+    if (soundEnabled) {
+      initAudio();
+      requestNotificationPermission();
+    }
   }
 
   // Filters
@@ -725,6 +791,11 @@
     // Mega whale alert
     if (tier.name === 'mega' || tier.name === 'whale') {
       showWhaleAlert(btcAmount);
+    }
+
+    // Push notification for 500+ BTC
+    if (tier.name === 'mega') {
+      sendNotification(btcAmount, usd);
     }
 
     playAlert(tier.name);
