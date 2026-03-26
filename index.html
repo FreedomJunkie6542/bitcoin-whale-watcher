@@ -59,7 +59,10 @@
     z-index: 1;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
   /* Header */
@@ -67,9 +70,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0 30px;
+    padding: 10px 0 16px;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
+    flex-shrink: 0;
   }
 
   .logo {
@@ -79,14 +83,14 @@
   }
 
   .logo-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(135deg, var(--accent), #e88a0c);
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     box-shadow: 0 0 30px var(--accent-glow);
     animation: pulse-glow 3s ease-in-out infinite;
   }
@@ -98,7 +102,7 @@
 
   .logo h1 {
     font-family: 'Space Mono', monospace;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent), #fbbf24);
     -webkit-background-clip: text;
@@ -106,7 +110,7 @@
   }
 
   .logo .subtitle {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-dim);
     font-weight: 400;
     letter-spacing: 2px;
@@ -120,8 +124,8 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 6px 14px;
+    font-size: 12px;
     color: var(--text-dim);
   }
 
@@ -143,16 +147,17 @@
   /* Stats bar */
   .stats-bar {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
   }
 
   .stat-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
+    border-radius: 10px;
+    padding: 12px 16px;
     transition: all 0.3s;
   }
 
@@ -162,24 +167,24 @@
   }
 
   .stat-label {
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-dim);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .stat-value {
     font-family: 'Space Mono', monospace;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
   }
 
   .stat-value.price { color: var(--accent); }
 
   .stat-change {
-    font-size: 12px;
-    margin-top: 4px;
+    font-size: 11px;
+    margin-top: 2px;
   }
   .stat-change.up { color: var(--green); }
   .stat-change.down { color: var(--red); }
@@ -188,18 +193,19 @@
   .controls {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 12px;
     flex-wrap: wrap;
+    flex-shrink: 0;
   }
 
   .filter-btn {
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text-dim);
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     transition: all 0.2s;
     font-family: 'Inter', sans-serif;
@@ -212,11 +218,11 @@
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 8px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'Space Mono', monospace;
-    width: 120px;
+    width: 100px;
     outline: none;
     transition: border-color 0.2s;
   }
@@ -227,10 +233,10 @@
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text-dim);
-    padding: 8px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.2s;
   }
 
@@ -241,11 +247,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
   }
 
   .feed-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -254,20 +261,21 @@
 
   .tx-count {
     font-family: 'Space Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-dim);
     background: var(--surface);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 100px;
   }
 
   .feed {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    max-height: 70vh;
+    gap: 3px;
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 6px;
   }
 
   .feed::-webkit-scrollbar { width: 4px; }
@@ -278,16 +286,18 @@
   .tx-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 14px;
-    animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 8px;
+    padding: 7px 12px;
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 110px 1fr auto;
+    grid-template-columns: 105px 1fr auto auto;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+    min-height: 36px;
   }
 
   .tx-card::before {
@@ -308,7 +318,7 @@
   .tx-card.tier-mega {
     border-color: rgba(139, 92, 246, 0.3);
     box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
-    animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1), mega-glow 3s ease-in-out infinite;
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1), mega-glow 3s ease-in-out infinite;
   }
 
   .tx-card.tier-whale {
@@ -317,7 +327,7 @@
   }
 
   @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+    from { opacity: 0; transform: translateY(-10px) scale(0.99); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
@@ -329,16 +339,16 @@
   .tx-tier {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     white-space: nowrap;
   }
 
-  .tier-icon { font-size: 18px; }
+  .tier-icon { font-size: 15px; }
 
   .tier-label {
-    font-size: 10px;
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     font-weight: 600;
   }
 
@@ -357,22 +367,51 @@
 
   .tx-amount {
     font-family: 'Space Mono', monospace;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     white-space: nowrap;
   }
 
   .tx-usd {
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-dim);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  /* Flow indicator */
+  .tx-flow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .tx-flow.flow-exchange-in {
+    color: var(--red);
+  }
+  .tx-flow.flow-exchange-out {
+    color: var(--green);
+  }
+  .tx-flow.flow-consolidation {
+    color: #a78bfa;
+  }
+  .tx-flow.flow-distribution {
+    color: #fbbf24;
+  }
+  .tx-flow.flow-transfer {
+    color: var(--text-dim);
+  }
+
   .tx-time {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-dim);
     font-family: 'Space Mono', monospace;
     white-space: nowrap;
@@ -441,23 +480,23 @@
   /* Empty state */
   .empty-state {
     text-align: center;
-    padding: 80px 20px;
+    padding: 60px 20px;
     color: var(--text-dim);
   }
 
   .empty-state .icon {
-    font-size: 60px;
-    margin-bottom: 16px;
+    font-size: 50px;
+    margin-bottom: 12px;
     opacity: 0.5;
   }
 
   .empty-state h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 6px;
     color: var(--text);
   }
 
-  .empty-state p { font-size: 14px; }
+  .empty-state p { font-size: 13px; }
 
   /* Splash animation */
   .splash {
@@ -485,8 +524,9 @@
     height: 3px;
     background: var(--surface-2);
     border-radius: 3px;
-    margin-top: 24px;
+    margin-top: 10px;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
   .volume-fill {
@@ -500,7 +540,8 @@
   /* Responsive */
   @media (max-width: 768px) {
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .tx-amount { font-size: 18px; }
+    .tx-card { grid-template-columns: 80px 1fr auto; }
+    .tx-flow { display: none; }
     header { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -559,7 +600,7 @@
     <button class="filter-btn" data-min="10" onclick="setFilter(this, 10)">10+ BTC</button>
     <button class="filter-btn" data-min="50" onclick="setFilter(this, 50)">50+ BTC</button>
     <button class="filter-btn" data-min="100" onclick="setFilter(this, 100)">100+ BTC</button>
-    <label style="font-size:12px;color:var(--text-dim);margin-left:8px;">Min BTC:</label>
+    <label style="font-size:11px;color:var(--text-dim);margin-left:6px;">Min BTC:</label>
     <input type="number" class="threshold-input" id="customMin" value="1" min="0.1" step="0.1" onchange="setCustomFilter(this.value)">
     <button class="sound-toggle" id="soundBtn" onclick="toggleSound()" title="Toggle sound">🔇</button>
   </div>
@@ -585,6 +626,103 @@
 </div>
 
 <script>
+  // Known exchange addresses (partial list of well-known hot/cold wallets)
+  const EXCHANGE_ADDRESSES = {
+    // Binance
+    '34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo': 'Binance',
+    'bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3': 'Binance',
+    '3JZq4atUahhuA9rLhXLMhhTo133J9rF97j': 'Binance',
+    '1NDyJtNTjmwk5xPNhjgAMu4HDHigtobu1s': 'Binance',
+    'bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97': 'Binance',
+    '3M219KR5vEneNb47ewrPfWyb5jQ2DjxRP6': 'Binance',
+    // Coinbase
+    '3Cbq7aT1tY8kMxWLbitaG7yT6bPbKChq64': 'Coinbase',
+    'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh': 'Coinbase',
+    '3FHNBLobJnbCTFTVakh5TXmEneyf5PT61B': 'Coinbase',
+    '395xEJpFqjqGjJHx5AwCAVop2L53op2gSN': 'Coinbase',
+    'bc1q7cyrfmck2ffu2ud3rn5l5a8yv6f0chkp0zpemf': 'Coinbase',
+    // Kraken
+    'bc1qxku3wkgfn22t555gss4c5wylp2rpzramf9xwsa': 'Kraken',
+    'bc1qr4dl5wa7kl8yu792dceg9z5knl2gkn220lk7a9': 'Kraken',
+    '3AfP3hXrpCGRW5Lke4CMain3FkDN3AFbKP': 'Kraken',
+    // Bitfinex
+    'bc1qgp3"grs6yw8qlvfvck8erxz22gtp3jlmfurs7397': 'Bitfinex',
+    '3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r': 'Bitfinex',
+    'bc1qw5f7f6r3r3pyuqph3nkl4zcm80d5kfm68fpvsy': 'Bitfinex',
+    // Gemini
+    '36PBGg5WRpLJKhLjrxXe9QQH2GzAPXCkaa': 'Gemini',
+    // Bitstamp
+    '3P3QsMVK89JBNqZQv5zMAKG8FK3kJM4rjt': 'Bitstamp',
+    '3BiKLKfd5GawVZ9jMiHe8iGiDYMnnMb3aw': 'Bitstamp',
+    // OKX
+    'bc1q2s3rjwvam9dt2ftt4sqxqjf3twav0gdx0k0q2etjz3g74trlc3zqk0vamc': 'OKX',
+    // Huobi / HTX
+    '1LAnF8h3qMGx3TSwNUHVneBZUEpwE4gu3D': 'HTX',
+    '14XKsv4yB1YFPcBjiG18NLCE7dGEYaUrMa': 'HTX',
+    // Bybit
+    'bc1qjysjfd9t9aspttpjqzv68k0ydpe7pvyd5v0z37jkskaq37h3e0eqfx7q0t': 'Bybit',
+  };
+
+  // Check if any address in a tx belongs to a known exchange
+  function detectExchange(tx) {
+    let fromExchange = null;
+    let toExchange = null;
+
+    // Check inputs (prevout scriptpubkey_address)
+    if (tx.vin) {
+      for (const vin of tx.vin) {
+        const addr = vin.prevout && vin.prevout.scriptpubkey_address;
+        if (addr && EXCHANGE_ADDRESSES[addr]) {
+          fromExchange = EXCHANGE_ADDRESSES[addr];
+          break;
+        }
+      }
+    }
+
+    // Check outputs
+    if (tx.vout) {
+      for (const vout of tx.vout) {
+        const addr = vout.scriptpubkey_address;
+        if (addr && EXCHANGE_ADDRESSES[addr]) {
+          toExchange = EXCHANGE_ADDRESSES[addr];
+          break;
+        }
+      }
+    }
+
+    return { fromExchange, toExchange };
+  }
+
+  // Analyze tx pattern from input/output counts
+  function analyzeFlow(tx, fromExchange, toExchange) {
+    const inputCount = tx.vin ? tx.vin.length : 0;
+    const outputCount = tx.vout ? tx.vout.length : 0;
+
+    // Exchange detection takes priority
+    if (toExchange && !fromExchange) {
+      return { label: '→ ' + toExchange, type: 'exchange-in', hint: 'Likely selling / depositing' };
+    }
+    if (fromExchange && !toExchange) {
+      return { label: fromExchange + ' →', type: 'exchange-out', hint: 'Likely buying / withdrawing' };
+    }
+    if (fromExchange && toExchange) {
+      return { label: fromExchange + ' → ' + toExchange, type: 'transfer', hint: 'Exchange transfer' };
+    }
+
+    // Heuristic: many inputs → few outputs = consolidation (accumulating)
+    if (inputCount >= 5 && outputCount <= 2) {
+      return { label: inputCount + '→' + outputCount + ' CONSOLIDATE', type: 'consolidation', hint: 'Accumulation pattern' };
+    }
+
+    // Heuristic: few inputs → many outputs = distribution (selling/paying out)
+    if (inputCount <= 2 && outputCount >= 5) {
+      return { label: inputCount + '→' + outputCount + ' DISTRIBUTE', type: 'distribution', hint: 'Distribution pattern' };
+    }
+
+    // Generic
+    return { label: inputCount + '→' + outputCount, type: 'transfer', hint: 'Transfer' };
+  }
+
   // State
   let ws = null;
   let btcPrice = 0;
@@ -613,7 +751,6 @@
     if (!soundEnabled || !audioCtx) return;
 
     if (tier === 'mega') {
-      // Loud siren alarm for 500+ BTC
       playMegaAlarm();
       return;
     }
@@ -640,7 +777,6 @@
     if (!audioCtx) return;
     const t = audioCtx.currentTime;
 
-    // Three rising siren sweeps
     for (let i = 0; i < 3; i++) {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
@@ -661,7 +797,6 @@
       osc.stop(start + 0.6);
     }
 
-    // Deep bass hit
     const bass = audioCtx.createOscillator();
     const bassGain = audioCtx.createGain();
     bass.type = 'sine';
@@ -782,9 +917,10 @@
     const tier = getTier(btcAmount);
     const time = formatTime();
     const usd = formatUsd(totalSats);
-    const inputCount = tx.vin.length;
-    const outputCount = tx.vout.length;
-    const feeSats = tx.fee || 0;
+
+    // Exchange & flow detection
+    const { fromExchange, toExchange } = detectExchange(tx);
+    const flow = analyzeFlow(tx, fromExchange, toExchange);
 
     // Update stats
     whaleCount++;
@@ -825,7 +961,7 @@
     card.dataset.btc = btcAmount;
     card.style.cursor = 'pointer';
     card.onclick = () => window.open('https://mempool.space/tx/' + tx.txid, '_blank');
-    card.title = 'View on mempool.space';
+    card.title = flow.hint + ' — click to view on mempool.space';
     card.innerHTML = `
       <div class="tx-tier">
         <span class="tier-icon">${tier.icon}</span>
@@ -835,13 +971,16 @@
         <div class="tx-amount" style="color:${tier.color}">${formatBtc(totalSats)} BTC</div>
         <div class="tx-usd">${usd}</div>
       </div>
+      <div class="tx-flow flow-${flow.type}" title="${flow.hint}">
+        ${flow.label}
+      </div>
       <span class="tx-time">${time}</span>
     `;
 
     feed.prepend(card);
 
-    // Limit feed to 100 items
-    while (feed.children.length > 100) {
+    // Limit feed to 50 items (reduced from 100 for performance)
+    while (feed.children.length > 50) {
       feed.removeChild(feed.lastChild);
     }
   }
@@ -867,12 +1006,8 @@
       statusText.textContent = 'Live — mempool.space';
       reconnectDelay = 1000;
 
-      // Subscribe to new transactions
       ws.send(JSON.stringify({ 'action': 'want', data: ['mempool-blocks', 'stats'] }));
-
-      // Also init tracking
       ws.send(JSON.stringify({ 'action': 'init' }));
-      // Track live tx
       ws.send(JSON.stringify({ 'track-mempool-block': 0 }));
     };
 
@@ -880,25 +1015,21 @@
       try {
         const data = JSON.parse(event.data);
 
-        // Handle transactions from mempool blocks
         if (data.mempoolInfo) {
           // General mempool info update
         }
 
         if (data['mempool-blocks']) {
-          // New mempool block data contains transactions
           const blocks = data['mempool-blocks'];
           blocks.forEach(block => {
             if (block.transactions) {
               block.transactions.forEach(tx => {
-                // The mempool-blocks format has limited tx info
-                // We process what we get
+                // mempool-blocks format has limited tx info
               });
             }
           });
         }
 
-        // Handle projected blocks with transactions
         if (data.projectedBlocks) {
           data.projectedBlocks.forEach(block => {
             if (block.transactions) {
@@ -907,17 +1038,14 @@
           });
         }
 
-        // Direct transaction data
         if (data.tx) {
           addTransaction(data.tx);
         }
 
-        // Array of transactions
         if (data.transactions) {
           data.transactions.forEach(tx => addTransaction(tx));
         }
 
-        // New mempool transactions (the key feed)
         if (data['added-transactions']) {
           data['added-transactions'].forEach(tx => addTransaction(tx));
         }
@@ -939,14 +1067,13 @@
     };
   }
 
-  // Alternative: poll mempool API for recent large transactions
+  // Poll mempool API for recent large transactions
   async function pollTransactions() {
     try {
       const res = await fetch('https://mempool.space/api/mempool/recent');
       const txs = await res.json();
       txs.forEach(tx => {
         if (tx.value && tx.value / 1e8 >= minBtc) {
-          // Recent endpoint has limited data, fetch full tx
           fetchFullTx(tx.txid);
         }
       });
@@ -972,7 +1099,6 @@
     }
   }
 
-  // Poll for new large transactions as backup
   async function pollLargeTransactions() {
     try {
       const res = await fetch('https://mempool.space/api/mempool/recent');
@@ -991,11 +1117,7 @@
   fetchPrice();
   setInterval(fetchPrice, 30000);
   connect();
-
-  // Poll as backup every 10 seconds
   setInterval(pollLargeTransactions, 10000);
-
-  // Initial poll
   setTimeout(pollLargeTransactions, 2000);
 </script>
 </body>
