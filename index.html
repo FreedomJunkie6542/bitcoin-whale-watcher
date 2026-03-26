@@ -706,6 +706,7 @@
     btn.classList.add('active');
     minBtc = val;
     document.getElementById('customMin').value = val;
+    applyFilter();
   }
 
   function setCustomFilter(val) {
@@ -713,6 +714,18 @@
     document.querySelectorAll('.filter-btn').forEach(b => {
       b.classList.toggle('active', parseFloat(b.dataset.min) === minBtc);
     });
+    applyFilter();
+  }
+
+  function applyFilter() {
+    let visible = 0;
+    feed.querySelectorAll('.tx-card').forEach(card => {
+      const btc = parseFloat(card.dataset.btc || 0);
+      const show = btc >= minBtc;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('txCount').textContent = visible + ' transactions';
   }
 
   // Tier classification
@@ -806,6 +819,7 @@
     // Build card
     const card = document.createElement('div');
     card.className = `tx-card tier-${tier.name}`;
+    card.dataset.btc = btcAmount;
     card.style.cursor = 'pointer';
     card.onclick = () => window.open('https://mempool.space/tx/' + tx.txid, '_blank');
     card.title = 'View on mempool.space';
